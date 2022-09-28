@@ -18,8 +18,35 @@ $data = [
     "sconto" => 50,
 ];
 
+
+
+
 $crocchette = new PetFood($data);
+
 // var_dump($crocchette);
+
+
+
+$dataError = [
+    "name" => 'Crocchette',
+    "description" => 'Vere crocchette di pollo per il vostro animaletto, da oggi il 40% in più di pollo',
+    "brand" => 'Oh Pullu!',
+    "price" => "-9.99",
+    "weight" => '1',
+    "sconto" => 50,
+];
+
+
+// TRY AND CATCH 
+try {
+    //    echo($data['price']);
+    $prodottiGratis=new PetFood($dataError);
+} catch (Exception $e) {
+    ?><h1> <?= $e->getMessage();?></h1> <?php
+};
+
+
+
 
 $dataDue = [
     "name" => 'Cuccia da esterno',
@@ -88,5 +115,7 @@ $carrello = [
 
 $user = new User($carrello);
 var_dump($carrello);
+
+
 
 echo 'La tua spesa totale è: ' . $user->payment . '€';
