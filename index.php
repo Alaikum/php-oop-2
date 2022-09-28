@@ -15,6 +15,7 @@ $data = [
     "brand" => 'Oh Pullu!',
     "price" => "9.99",
     "weight" => '1',
+    "sconto" => 50,
 ];
 
 $crocchette = new PetFood($data);
@@ -46,15 +47,46 @@ $polloPlastica = new PetToy($dataTre);
 // var_dump($polloPlastica);
 
 // COMPRO 2 PACCHI DI CROCCHETTE 
-$acquisti = [$crocchette, $cuccia, $polloPlastica, $crocchette];
+$acquisti = [$crocchette, $cuccia, $polloPlastica, $polloPlastica, $polloPlastica, $crocchette];
+
+
+// può diventare classe carrello...con due metodi 
+// metti e togli prodotto , altro metodo che fa genera ordine
+// che genera un'istanza della classe ordini 
+$carrello = [
+    [
+        'quantità' => 2,
+        'prodotti' => $crocchette
+    ],
+    [
+        'quantità' => 3,
+        'prodotti' => $polloPlastica
+
+    ],
+    [
+        'quantità' => 1,
+        'prodotti' => $cuccia
+
+    ],
+];
+
+// $sommatotale=0;
+// // var_dump($carrello);
+// foreach($carrello as $pezzi){
+//     var_dump($pezzi);
+//     // var_dump( $pezzi['prodotti']->price);
+//     $numProdotto=$pezzi['quantità'];
+//    $prezzoProdotto=$pezzi['prodotti']->price;
+//    $prezzoStock=$numProdotto*$prezzoProdotto;
+//    echo $prezzoStock;
+//    $sommatotale+=$prezzoStock;
+// };
+// echo '<br>' . $sommatotale;
+
 
 // var_dump($acquisti);
 
-$user = new User($acquisti);
+$user = new User($carrello);
+var_dump($carrello);
 
-var_dump($user);
-
-
-
-?>
-
+echo 'La tua spesa totale è: ' . $user->payment . '€';
